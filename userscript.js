@@ -6,8 +6,6 @@
 // @grant       none
 // @author      L7K
 // @license     GPL-3.0-or-later
-// @version 0.0.1.20190602104436
-// @namespace https://greasyfork.org/users/306456
 // ==/UserScript==
 
 (function()
@@ -135,15 +133,18 @@
 		constructor(form)
 		{
 			super(form);
-			//this.form = form;
-			let passwordFields = form.querySelectorAll("input[type='password']");
-			for (let i = 0; i < passwordFields.length; i++)
+			if (form)
 			{
-				let key = inputNameOriginalDescriptor.get.call(passwordFields[i]);
-				if (key && (key.length > 0))
+				//this.form = form;
+				let passwordFields = form.querySelectorAll("input[type='password']");
+				for (let i = 0; i < passwordFields.length; i++)
 				{
-					this.delete(key);
-					this.set(key, PASSWORD_PLACEHOLDER);
+					let key = inputNameOriginalDescriptor.get.call(passwordFields[i]);
+					if (key && (key.length > 0))
+					{
+						this.delete(key);
+						this.set(key, PASSWORD_PLACEHOLDER);
+					}
 				}
 			}
 		}
